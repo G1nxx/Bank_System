@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Abstractions;
+using Domain.Primitives;
 
-namespace Domain.Abstractions
+namespace Domain.Entities
 {
-    internal interface ITransfer : ITransaction
+    internal class Transfer : Entity
     {
-
+        public BankAccount RecipientBankAccount { get; set; }
+        public BankAccount ReceiverBankAccount { get; set; }
+        public bool IsCancelled { get; set; }
+        public DateTime Date { get; set; }
+        public decimal Amount { get; set; }
     }
 }

@@ -1,22 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Abstractions;
+using Domain.Primitives;
 
-namespace Domain.Abstractions
+namespace Domain.Entities.Transactions
 {
-    internal interface IInstallmentPlan : ITransaction
+    internal class InstallmentPlan : Entity, IBankService
     {
-        public enum Duration
-        {
-            _1M,
-            _3M,
-            _6M,
-            _12M,
-            _18M,
-            _24M,
-            _36M
-        }
+        public decimal InterestRate { get; set; }
+
+        public decimal Amount { get; set; }
+
+        public DateTime LastUpdatedAt { get; private set; }
+
+        public DateTime CreatedAt { get; private set; }
+
+        public DateTime ClosedAt { get; private set; }
+
+        public int TermInMonths { get; private set; }
+
+        public BankAccount Account { get; private set; }
+
+        public bool IsApproved { get; private set; }
     }
 }

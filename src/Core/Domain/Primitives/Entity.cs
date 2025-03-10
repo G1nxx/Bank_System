@@ -1,11 +1,9 @@
-﻿
-
-namespace Domain.Primitives
+﻿namespace Domain.Primitives
 {
     internal class Entity
     {
-        protected Entity(Guid id) => Id = id;
+        public Entity(uint id) => Id = id;
         protected Entity() {}
-        public Guid Id { get; protected set; }
+        public uint Id { get; protected set; }
     }
 }

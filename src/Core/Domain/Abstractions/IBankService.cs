@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Entities;
 
 namespace Domain.Abstractions
 {
-    internal interface ITransaction
+    internal interface IBankService
     {
-        string TransactionID { get; }
+        public decimal InterestRate { get; }
+        public decimal Amount { get; }
+        public DateTime LastUpdatedAt { get; }
+        public DateTime CreatedAt { get; }
+        public DateTime ClosedAt { get; }
+        public int TermInMonths { get; }
+        public BankAccount Account { get; }
+        public bool IsApproved { get;  }
     }
 }

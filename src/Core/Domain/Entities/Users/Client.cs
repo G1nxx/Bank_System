@@ -1,13 +1,9 @@
 ﻿using Domain.Primitives;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Domain.Abstractions;
 
-namespace Domain.Entities
+namespace Domain.Entities.Users
 {
-    internal class Client : Primitives.Entity, Abstractions.IUser
+    internal class Client : Entity, IUser
     {
         public string Name { get; private set; }
         public DateTime DateOfBirth { get; private set; }

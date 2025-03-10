@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.Abstractions
+﻿namespace Domain.Abstractions
 {
     internal interface IUser
     {
-        string Name { get;}
-        DateTime DateOfBirth { get; }
-        string Email { get; }
-        string PhoneNumber { get; }
+        public string Name { get;}
+        public DateTime DateOfBirth { get; }
+        public string Email { get; }
+        public string PassportSeries { get; }
+        public string PhoneNumber { get; }
     }
 }

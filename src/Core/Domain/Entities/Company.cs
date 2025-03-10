@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Primitives;
 
-namespace Domain.Abstractions
+namespace Domain.Entities
 {
     public enum CompanyType
     {
@@ -16,13 +12,13 @@ namespace Domain.Abstractions
         ZAO
     }
 
-    internal interface ICompany
+    internal class Company : Entity
     {
-        public CompanyType Type { get; }
-        string LegalName { get; }
-        int TRN { get; }
-        int BIK { get; }
-        string LegalAddress { get; }
+        public CompanyType Type { get; private set; }
+        public string LegalName { get; private set; }
+        public int TRN { get; private set; }
+        public int BIK { get; private set; }
+        public string LegalAddress { get; private set; }
 
     }
 }

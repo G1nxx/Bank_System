@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Abstractions;
+﻿using Domain.Abstractions;
 
 namespace Domain.Entities
 {
-    internal class Bank
+    internal class Bank() : Company
     {
-        string LegalName { get; }
-        string LegalAddress { get; }
-        IEnumerable<BankAccount> Credits { get; }
-        IEnumerable<IUser> Clients { get; }
+        public IEnumerable<BankAccount> Credits { get; private set; }
+        public IEnumerable<IUser> Clients { get; private set; }
     }
 }

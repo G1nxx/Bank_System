@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Abstractions;
 
 namespace Domain.Entities.Transactions.Requested
 {
-    internal class InstallmentPlanRequest
+    internal class InstallmentPlanRequest : IRequestBankService
     {
+        public int TermInMonths { get; private set; }
+
+        public string Message { get; private set; }
+
+        public decimal InterestRate { get; private set; }
     }
 }
