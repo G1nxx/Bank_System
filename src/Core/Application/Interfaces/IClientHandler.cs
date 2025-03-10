@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Interfaces.Repositories
+namespace Application.Interfaces
 {
-    internal interface IBankRepository
+    internal interface IClentHandler
     {
     }
 }

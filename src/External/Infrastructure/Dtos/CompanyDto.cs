@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Infrastructure.Dtos
 {
-    internal class CompanyDto
+    [Table("Companies")]
+    internal class CompanyDto : EntityDto
     {
+        public CompanyType Type { get; set; }
+        public string LegalName { get; set; }
+        public int TRN { get; set; }
+        public int BIK { get; set; }
+        public string LegalAddress { get; set; }
     }
 }

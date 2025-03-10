@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Interfaces
 {
-    internal interface IRepository
+    public interface IRepository<T>
     {
+        Task<uint> AddAsync(T entity, CancellationToken cancellationToken);
+        Task<T> GetByIdAsync(uint id, CancellationToken cancellationToken);
+        Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken);
+        Task UpdateAsync(T entity, CancellationToken cancellationToken);
+        Task DeleteAsync(uint id, CancellationToken cancellationToken);
     }
 }
