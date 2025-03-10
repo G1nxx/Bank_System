@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Interfaces
+namespace Infrastructure.Dtos
 {
-    internal interface IBankHandler
+    internal class BankDto
     {
     }
 }

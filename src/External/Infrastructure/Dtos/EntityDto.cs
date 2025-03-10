@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Interfaces
+namespace Infrastructure.Dtos
 {
-    internal interface IRequestHandler
+    internal class EntityDto
     {
+        public uint Id { get; set; }
     }
 }

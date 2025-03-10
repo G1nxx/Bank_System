@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Interfaces
+namespace Infrastructure.Interfaces
 {
-    internal interface ITransferHandler
+    internal interface IRepository
     {
     }
 }
