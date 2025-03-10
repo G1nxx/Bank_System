@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Abstractions
 {
-    internal interface ICompany
+
+    internal class Credit
     {
+        public decimal InterestRate { get; set; }
+        public decimal Amount { get; set; }
+
     }
 }

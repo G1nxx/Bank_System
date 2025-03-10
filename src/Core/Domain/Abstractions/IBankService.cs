@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Abstractions
 {
-    internal interface IUser
+    internal interface ITransaction
     {
-        string Name { get;}
-        DateTime DateOfBirth { get; }
-        string Email { get; }
-        string PhoneNumber { get; }
+        string TransactionID { get; }
     }
 }
