@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace Bank_System
+namespace BankSystem
 {
     [Application]
     public class MainApplication : MauiApplication

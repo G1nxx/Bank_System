@@ -2,7 +2,7 @@ using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 using System;
 
-namespace Bank_System
+namespace BankSystem
 {
     internal class Program : MauiApplication
     {

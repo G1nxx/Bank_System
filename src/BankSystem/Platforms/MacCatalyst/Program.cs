@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace Bank_System
+namespace BankSystem
 {
     public class Program
     {

@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-using Infrastructure.Repositories;
-using Domain.Abstractions;
 
-namespace Bank_System
+namespace BankSystem
 {
     public static class MauiProgram
     {
@@ -17,10 +15,8 @@ namespace Bank_System
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            builder.Services.AddTransient<IUnitOfWork, SQLiteUnitOfWork>();
-
 #if DEBUG
-            builder.Logging.AddDebug();
+    		//builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

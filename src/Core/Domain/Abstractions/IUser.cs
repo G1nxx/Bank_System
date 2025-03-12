@@ -2,6 +2,7 @@
 {
     internal interface IUser
     {
+        public string Login { get; }
         public string Name { get;}
         public DateTime DateOfBirth { get; }
         public string Email { get; }

@@ -1,4 +1,4 @@
-﻿namespace Bank_System
+﻿namespace BankSystem
 {
     public partial class AppShell : Shell
     {
