@@ -1,4 +1,4 @@
-﻿using BankSystem.Pages;
+﻿using BankSystem.Pages.BankPages;
 
 namespace BankSystem
 {

@@ -1,31 +1,37 @@
 using Application.Handlers;
 using Application.Interfaces;
 using Application.Interfaces.Handlers;
+using AutoMapper;
 using Domain.Entities;
 using Domain.Enums;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
-namespace BankSystem.Pages;
+namespace BankSystem.Pages.BankPages;
 
 public partial class EditBanksPage : ContentPage
 {
     public ObservableCollection<Bank> Banks { get; set; } = new ObservableCollection<Bank>();
+
+    private IMapper _mapper;
+
     private IBankHandler _bankHandler { get; }
 
-    public EditBanksPage(IBankHandler bankHandler)
+    public EditBanksPage(IBankHandler bankHandler, IMapper mapper)
     {
+        _mapper = mapper;
         _bankHandler = bankHandler;
 
         InitializeComponent();
     }
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
+        banksCollectionView.ItemsSource = null;
+
         base.OnNavigatedTo(args);
 
         await Task.Run(() => UpdateBanks());
 
-        banksCollectionView.ItemsSource = null;
         banksCollectionView.ItemsSource = Banks;
         
     }
@@ -45,7 +51,7 @@ public partial class EditBanksPage : ContentPage
     {
         if (e.CurrentSelection.FirstOrDefault() is Bank selectedBank)
         {
-            await Navigation.PushAsync(new BankDetailsPage(selectedBank));
+            await Navigation.PushAsync(new BankDetailsPage(selectedBank, _bankHandler, _mapper));
         }
 
         banksCollectionView.SelectedItem = null;
@@ -53,6 +59,6 @@ public partial class EditBanksPage : ContentPage
 
     private async void OnAddBankClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AddBankPage(_bankHandler));
+        await Navigation.PushAsync(new AddBankPage(_bankHandler, _mapper));
     }
 }

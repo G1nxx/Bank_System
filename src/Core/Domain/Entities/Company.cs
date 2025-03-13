@@ -14,11 +14,11 @@ namespace Domain.Entities
             BIK = bIK;
         } 
 
-        public CompanyType Type { get; protected set; }
-        public string LegalName { get; protected set; }
-        public string LegalAddress { get; protected set; }
-        public int TRN { get; protected set; }
-        public int BIK { get; protected set; }
+        public CompanyType Type { get; set; }
+        public string LegalName { get; set; }
+        public string LegalAddress { get; set; }
+        public int TRN { get; set; }
+        public int BIK { get; set; }
 
     }
 }

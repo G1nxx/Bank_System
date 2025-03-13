@@ -1,26 +1,21 @@
-﻿using Domain.Abstractions;
-using Domain.Enums;
+﻿using Domain.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Bank : Company
+    public class Bank
     {
-        public Bank(
-            uint Id,
-            CompanyType Type,
-            string LegalName,
-            string LegalAddress,
-                int TRN,
-                int BIK,
-            uint CreditIds,
-            uint ClientIds) : base(Id, Type, LegalName, LegalAddress, TRN, BIK)
-        {
-            this.CreditIds = CreditIds;
-            this.ClientIds = ClientIds;
-        } 
+        public uint Id { get; set; }
+        public CompanyType Type { get; set; }
+        public string LegalName { get; set; }
+        public string LegalAddress { get; set; }
+        public int TRN { get; set; }
+        public int BIK { get; set; }
         public uint CreditIds { get; set; }
         public uint ClientIds { get; set; }
-        //public ICollection<BankAccount> Accounts { get; private set; }
-        //public ICollection<IUser> Users { get; private set; }
     }
 }

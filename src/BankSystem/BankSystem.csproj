@@ -70,19 +70,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Pages\EditBanksPage.xaml.cs">
+	  <Compile Update="Pages\BankPages\EditBanksPage.xaml.cs">
 	    <DependentUpon>EditBanksPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\AddBankPage.xaml">
+	  <MauiXaml Update="Pages\BankPages\AddBankPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\BankDetailsPage.xaml">
+	  <MauiXaml Update="Pages\BankPages\BankDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\EditBanksPage.xaml">
+	  <MauiXaml Update="Pages\BankPages\EditBanksPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\BankPages\RedactInfoBankPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\RegistrationPage.xaml">

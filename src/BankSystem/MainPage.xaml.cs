@@ -1,32 +1,44 @@
 ﻿using BankSystem.Pages;
+using BankSystem.Pages.BankPages;
 using Application.Interfaces;
-using Infrastructure.Presistence.Context;
-using Infrastructure.Presistence.UnitOfWork;
+using Infrastructure.Persistence.Context;
+using Infrastructure.Persistence.UnitOfWork;
+using Domain.Entities;
+using AutoMapper;
 
 namespace BankSystem;
 
 public partial class MainPage : ContentPage
 {
+    private IMapper _mapper;
     IUnitOfWork _unitOfWork;
-    public MainPage(IUnitOfWork unitOfWork)
+    private List<string> bankList = new();
+    public MainPage(IUnitOfWork unitOfWork, IMapper mapper)
     {
+        _mapper = mapper;
         _unitOfWork = unitOfWork;
         InitializeComponent();
-        Task.Run(() =>
-        {
-            UpdatePicker(CancellationToken.None).Wait();
-        });
+        
+    }
+    protected override async void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        bankPicker.ItemsSource = null;
+
+        base.OnNavigatedTo(args);
+
+        await Task.Run(() => UpdatePicker(CancellationToken.None));
+        bankPicker.ItemsSource = bankList;
     }
 
     private async Task UpdatePicker(CancellationToken cancellationToken)
     {
         try
         {
-            var banks = await _unitOfWork.GetBankHandler(cancellationToken).GetBanksInfoAsync(cancellationToken);
-            bankPicker.Items.Clear();
-            foreach (var bank in banks)
+            var banks = _unitOfWork.GetBankHandler(cancellationToken).GetBanksInfoAsync(cancellationToken).Result.ToList();
+            bankList.Clear();
+            for (int i = 0; i < banks.Count(); ++i)
             {
-                bankPicker.Items.Add(bank.LegalName);
+                bankList.Add(banks[i].LegalName);
             }
         }
         catch (Exception ex)
@@ -36,7 +48,7 @@ public partial class MainPage : ContentPage
     }
     private async void OnRedactBanksClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new EditBanksPage(_unitOfWork.GetBankHandler()));
+        await Navigation.PushAsync(new EditBanksPage(_unitOfWork.GetBankHandler(), _mapper));
     }
 
     private async void OnRegisterClicked(object sender, EventArgs e)
@@ -50,7 +62,7 @@ public partial class MainPage : ContentPage
         string selectedBank = bankPicker.SelectedItem.ToString();
         statusLabel.Text = "";
 
-        await Navigation.PushAsync(new RegistrationPage(selectedBank));
+        await Navigation.PushAsync(new RegistrationPage(selectedBank, _unitOfWork.GetUserHandler()));
     }
 
     private async void OnLoginClicked(object sender, EventArgs e)
@@ -64,6 +76,6 @@ public partial class MainPage : ContentPage
         string selectedBank = bankPicker.SelectedItem.ToString();
         statusLabel.Text = "";
 
-        //await Navigation.PushAsync(new LoginPage(selectedBank));
+        await Navigation.PushAsync(new LoginPage(selectedBank));
     }
 }

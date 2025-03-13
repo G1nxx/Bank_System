@@ -3,13 +3,17 @@ using Infrastructure.Models.Mapping;
 using Application.Interfaces;
 using Application.Interfaces.Handlers;
 using Domain.Entities.Users;
-using Infrastructure.Presistence.Context;
-using Infrastructure.Presistence.UnitOfWork;
+using Infrastructure.Persistence.Context;
+using Infrastructure.Persistence.UnitOfWork;
 using Domain.Enums;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Application.Handlers;
 using Application.Dtos;
-using Infrastructure.Presistence.Repositories;
+using Infrastructure.Persistence.Repositories;
+using BankSystem.Pages.BankPages;
+using Application.Interfaces.Repositories;
+using Domain.Entities;
+using BankSystem.Pages;
 
 namespace BankSystem
 {
@@ -27,17 +31,25 @@ namespace BankSystem
                 });
 
             builder.Services.AddSingleton<MainPage>();
+            //builder.Services.AddSingleton<RegistrationPage>();
             builder.Services.AddSingleton<SQLiteUnitOfWork>();
-            builder.Services.AddSingleton<BankHandler>();
 
             string dbPath = Path.Combine(@"G:\Projects\OOP\Bank_System\db", "main.db");
             var context = new AppDbContext(dbPath);
             builder.Services.AddSingleton(context);
 
-            builder.Services.AddAutoMapper(typeof(BankMappingProfile).Assembly);
+            builder.Services.AddAutoMapper(typeof(BankMappingProfile).Assembly, 
+                                           typeof(UserMappingProfile).Assembly);
+
+            builder.Services.AddSingleton<BankHandler>();
+            builder.Services.AddSingleton<UserHandler>();
 
             builder.Services.AddSingleton<IBankHandler, BankHandler>();
+            builder.Services.AddSingleton<IUserHandler, UserHandler>();
+
             builder.Services.AddSingleton<IRepository<BankDto>, BankRepository>();
+            builder.Services.AddSingleton<IUserRepository, UserRepository>();
+
             builder.Services.AddTransient<IUnitOfWork, SQLiteUnitOfWork>();
 
 #if DEBUG

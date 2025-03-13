@@ -9,5 +9,6 @@ namespace Application.Interfaces.Handlers
         Task<Bank> GetBankByIdAsync(uint bankId, CancellationToken cancellationToken);
         Task<IEnumerable<Bank>> GetBanksInfoAsync(CancellationToken cancellationToken);
         Task UpdateBank(Bank bank, CancellationToken cancellationToken);
+        Task DeleteBank(Bank bank, CancellationToken cancellationToken);
     }
 }

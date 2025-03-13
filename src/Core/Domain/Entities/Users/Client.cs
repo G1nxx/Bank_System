@@ -3,7 +3,7 @@ using Domain.Abstractions;
 
 namespace Domain.Entities.Users
 {
-    public class Client : Entity, IUser
+    public class Client : Entity
     {
         public string Login { get; private set; }
         public string Name { get; private set; }

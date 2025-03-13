@@ -4,7 +4,7 @@ using SQLite;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Presistence.Context
+namespace Infrastructure.Persistence.Context
 {
 
     public class AppDbContext
@@ -18,7 +18,7 @@ namespace Infrastructure.Presistence.Context
 
         public async Task CreateTablesAsync()
         {
-            await _db.CreateTableAsync<BankDto>();
+            await _db.CreateTablesAsync<BankDto, UserDto>();
         }
 
         public SQLiteAsyncConnection Connection => _db;

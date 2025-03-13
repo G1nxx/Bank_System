@@ -1,9 +1,9 @@
 ﻿using Application.Dtos;
 using Application.Interfaces;
-using Infrastructure.Presistence.Context;
+using Infrastructure.Persistence.Context;
 using SQLite;
 
-namespace Infrastructure.Presistence.Repositories
+namespace Infrastructure.Persistence.Repositories
 {
     public class BankRepository : IRepository<BankDto>
     {

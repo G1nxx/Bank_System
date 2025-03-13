@@ -33,5 +33,10 @@ namespace Application.Handlers
         {
             await bankRepository.UpdateAsync(bankMapper.Map<BankDto>(bank), cancellationToken);
         }
+
+        public async Task DeleteBank(Bank bank, CancellationToken cancellationToken)
+        {
+            await bankRepository.DeleteAsync(bank.Id, cancellationToken);
+        }
     }
 } // Entity Farmework
