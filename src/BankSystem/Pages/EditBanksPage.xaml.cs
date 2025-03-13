@@ -17,26 +17,17 @@ public partial class EditBanksPage : ContentPage
     {
         _bankHandler = bankHandler;
 
-        //Task.Run(UpdateBanks);
         InitializeComponent();
-
-        banksCollectionView.ItemsSource = Banks;
     }
-    //protected override void OnAppearing()
-    //{
-    //    base.OnAppearing();
-
-    //    Task.Run(() => UpdateBanks());
-    //    //Debug.Assert(Banks.Count != 0);
-    //}
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
         base.OnNavigatedTo(args);
 
         await Task.Run(() => UpdateBanks());
-        //Debug.Assert(Banks.Count != 0);
 
+        banksCollectionView.ItemsSource = null;
         banksCollectionView.ItemsSource = Banks;
+        
     }
 
     public async Task UpdateBanks()

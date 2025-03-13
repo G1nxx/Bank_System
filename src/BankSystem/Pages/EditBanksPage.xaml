@@ -2,11 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BankSystem.Pages.EditBanksPage"
-             Title="EditBanksPage"
-             xmlns:pages="clr-namespace:BankSystem.Pages"
-             xmlns:entities="clr-namespace:Domain.Entities;assembly=Domain"
-             x:DataType="pages:EditBanksPage"
-             >
+             Title="EditBanksPage">
 
 
 
@@ -35,7 +31,7 @@
                             SelectionChanged="OnBankSelected">
                 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="entities:Bank">
+                    <DataTemplate>
                         <VerticalStackLayout Padding="10" Spacing="5">
                             <Label Text="{Binding LegalName}"
                                    FontSize="18"
