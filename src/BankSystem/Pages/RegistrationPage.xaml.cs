@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 
 namespace BankSystem.Pages;
-public partial class RegistrationPage : ContentPage
+public partial class RegistrationPage : ContentPage // Fluent Validator - Посмотреть
 {
     public RegistrationPage(string selectedBank)
     {
@@ -15,7 +15,6 @@ public partial class RegistrationPage : ContentPage
         string password = passwordEntry.Text;
         string confirmPassword = confirmPasswordEntry.Text;
 
-        // Проверка на пустые поля
         if (string.IsNullOrEmpty(username) ||
             string.IsNullOrEmpty(email) ||
             string.IsNullOrEmpty(password) ||
@@ -25,7 +24,6 @@ public partial class RegistrationPage : ContentPage
             return;
         }
 
-        // Регулярные выражения
         var usernameRegex = new Regex(@"^[a-zA-Z0-9]{4,20}$");
         var emailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
         var passwordRegex = new Regex(@"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$");
@@ -54,7 +52,6 @@ public partial class RegistrationPage : ContentPage
             return;
         }
 
-        // Если все ОК
         statusLabel.TextColor = Colors.Green;
         statusLabel.Text = "Успешная регистрация!";
     }

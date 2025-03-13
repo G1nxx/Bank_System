@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BankSystem.Pages.AddBankPage"
+             Title="AddBankPage">
+    
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="15">
+            <Label Text="Добавление нового банка"
+                   FontSize="24"
+                   HorizontalOptions="Center" />
+
+            <Entry x:Name="typeEntry"
+                   Placeholder="Тип банка" />
+
+            <Entry x:Name="legalNameEntry"
+                   Placeholder="Юридическое название" />
+
+            <Entry x:Name="legalAddressEntry"
+                   Placeholder="Юридический адрес" />
+
+            <Entry x:Name="trnEntry"
+                   Placeholder="TRN"
+                   Keyboard="Numeric" />
+
+            <Entry x:Name="bikEntry"
+                   Placeholder="BIK"
+                   Keyboard="Numeric" />
+
+            <Entry x:Name="creditIdsEntry"
+                   Placeholder="ID кредитов"
+                   Keyboard="Numeric" />
+
+            <Entry x:Name="clientIdsEntry"
+                   Placeholder="ID клиентов"
+                   Keyboard="Numeric" />
+
+            <Button Text="Добавить"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    Clicked="OnAddButtonClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

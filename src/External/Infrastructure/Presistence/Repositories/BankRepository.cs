@@ -1,34 +1,35 @@
 ﻿using Application.Dtos;
 using Application.Interfaces;
+using Infrastructure.Presistence.Context;
 using SQLite;
 
 namespace Infrastructure.Presistence.Repositories
 {
     public class BankRepository : IRepository<BankDto>
     {
-        public SQLiteAsyncConnection database;
-        public BankRepository(SQLiteAsyncConnection database)
+        private readonly AppDbContext _context;
+        public BankRepository(AppDbContext context)
         {
-            this.database = database;
+            _context = context;
         }
         public async Task<uint> AddAsync(BankDto entity, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var s = await database.InsertAsync(entity);
+            var s = await _context.Connection.InsertAsync(entity);
             return (uint)s;
         }
 
         public async Task DeleteAsync(uint id, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await database.Table<BankDto>()
+            var result = await _context.Connection.Table<BankDto>()
                             .Where(t => t.Id == id).DeleteAsync();
         }
 
         public async Task<IEnumerable<BankDto>> GetAllAsync(CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await database.Table<BankDto>().ToListAsync();
+            var result = await _context.Connection.Table<BankDto>().ToListAsync();
 
             return result;
         }
@@ -36,7 +37,7 @@ namespace Infrastructure.Presistence.Repositories
         public async Task<BankDto> GetByIdAsync(uint id, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await database.Table<BankDto>()
+            var result = await _context.Connection.Table<BankDto>()
                             .Where(t => t.Id == id).FirstOrDefaultAsync();
             return result;
         }
@@ -44,7 +45,7 @@ namespace Infrastructure.Presistence.Repositories
         public async Task UpdateAsync(BankDto entity, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            await database.UpdateAsync(entity);
+            await _context.Connection.UpdateAsync(entity);
         }
     }
 }

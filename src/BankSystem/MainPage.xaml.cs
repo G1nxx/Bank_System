@@ -12,14 +12,17 @@ public partial class MainPage : ContentPage
     {
         _unitOfWork = unitOfWork;
         InitializeComponent();
-        Task.Run(UpdatePicker).Wait();
+        Task.Run(() =>
+        {
+            UpdatePicker(CancellationToken.None).Wait();
+        });
     }
 
-    private async Task UpdatePicker()
+    private async Task UpdatePicker(CancellationToken cancellationToken)
     {
         try
         {
-            var banks = await _unitOfWork.GetAllBanksAsync();
+            var banks = await _unitOfWork.GetBankHandler(cancellationToken).GetBanksInfoAsync(cancellationToken);
             bankPicker.Items.Clear();
             foreach (var bank in banks)
             {
@@ -31,6 +34,10 @@ public partial class MainPage : ContentPage
             statusLabel.Text = $"Ошибка загрузки банков: {ex.Message}";
         }
     }
+    private async void OnRedactBanksClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new EditBanksPage(_unitOfWork.GetBankHandler()));
+    }
 
     private async void OnRegisterClicked(object sender, EventArgs e)
     {
@@ -41,9 +48,8 @@ public partial class MainPage : ContentPage
         }
 
         string selectedBank = bankPicker.SelectedItem.ToString();
-        statusLabel.Text = ""; // очищаем статус
+        statusLabel.Text = "";
 
-        // Здесь может быть переход на страницу регистрации, передаём выбранный банк
         await Navigation.PushAsync(new RegistrationPage(selectedBank));
     }
 
@@ -58,7 +64,6 @@ public partial class MainPage : ContentPage
         string selectedBank = bankPicker.SelectedItem.ToString();
         statusLabel.Text = "";
 
-        // Здесь переход на страницу входа
         //await Navigation.PushAsync(new LoginPage(selectedBank));
     }
 }

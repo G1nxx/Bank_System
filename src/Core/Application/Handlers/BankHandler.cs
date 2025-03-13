@@ -9,7 +9,7 @@ namespace Application.Handlers
     public class BankHandler(
      IRepository<BankDto> bankRepository, IMapper bankMapper) : IBankHandler
     {
-        public async Task<uint> CreateBank(Bank bank, CancellationToken cancellationToken)
+        public async Task<uint> CreateBankAsync(Bank bank, CancellationToken cancellationToken)
         {
             return await bankRepository.AddAsync(bankMapper.Map<BankDto>(bank), cancellationToken);
         }
@@ -34,4 +34,4 @@ namespace Application.Handlers
             await bankRepository.UpdateAsync(bankMapper.Map<BankDto>(bank), cancellationToken);
         }
     }
-}
+} // Entity Farmework

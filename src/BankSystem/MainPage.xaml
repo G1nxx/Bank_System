@@ -4,38 +4,54 @@
              x:Class="BankSystem.MainPage"
              Title="Банковская система">
 
-    <VerticalStackLayout Padding="30" Spacing="25">
+    <Grid Padding="30" RowSpacing="25" ColumnSpacing="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <Label 
-            Text="Добро пожаловать в банковскую систему управления и пользования банками." 
-            FontSize="24" 
-            HorizontalOptions="Center"
-            HorizontalTextAlignment="Center" />
+        <Button Text="Управление Банками"
+                BackgroundColor="#FF9800"
+                TextColor="White"
+                Clicked="OnRedactBanksClicked"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                Grid.Row="0" />
 
-        <Label 
-            Text="Выберите банк:" 
-            FontSize="18" 
-            HorizontalOptions="Center" />
+        <VerticalStackLayout Grid.Row="1" Spacing="25">
+            <Label 
+                Text="Добро пожаловать в банковскую систему управления и пользования банками." 
+                FontSize="24" 
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center" />
 
-        <Picker x:Name="bankPicker" Title="Выберите банк"/>
+            <Label 
+                Text="Выберите банк:" 
+                FontSize="18" 
+                HorizontalOptions="Center" />
 
-        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
-            <Button Text="Зарегистрироваться"
-                    BackgroundColor="#4CAF50"
-                    TextColor="White"
-                    Clicked="OnRegisterClicked" />
+            <Picker x:Name="bankPicker" Title="Выберите банк"/>
 
-            <Button Text="Войти"
-                    BackgroundColor="#007AFF"
-                    TextColor="White"
-                    Clicked="OnLoginClicked" />
-        </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+                <Button Text="Зарегистрироваться"
+                        BackgroundColor="#4CAF50"
+                        TextColor="White"
+                        Clicked="OnRegisterClicked" />
 
-        <Label x:Name="statusLabel"
-               TextColor="Red"
-               FontSize="14"
-               HorizontalOptions="Center" />
+                <Button Text="Войти"
+                        BackgroundColor="#007AFF"
+                        TextColor="White"
+                        Clicked="OnLoginClicked" />
+            </HorizontalStackLayout>
 
-    </VerticalStackLayout>
+            <Label x:Name="statusLabel"
+                   TextColor="Red"
+                   FontSize="14"
+                   HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </Grid>
 
 </ContentPage>

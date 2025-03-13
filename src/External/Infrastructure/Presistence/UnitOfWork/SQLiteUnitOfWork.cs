@@ -1,11 +1,12 @@
 ﻿using Domain.Abstractions;
 using Domain.Entities;
+using Domain.Enums;
 using Application.Dtos;
 using Application.Interfaces;
 using Microsoft.Maui.ApplicationModel;
 using SQLite;
 using Infrastructure.Presistence.Context;
-using Infrastructure.Presistence.Repositories;
+using Application.Interfaces.Handlers;
 using AutoMapper;
 
 namespace Infrastructure.Presistence.UnitOfWork
@@ -14,66 +15,29 @@ namespace Infrastructure.Presistence.UnitOfWork
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
-        private readonly BankRepository _bankRepository;
+        private readonly IBankHandler _bankHandler;
 
-        public SQLiteUnitOfWork(AppDbContext context, IMapper mapper)
+        public SQLiteUnitOfWork(AppDbContext context, IMapper mapper, IBankHandler bankHandler)
         {
             _context = context;
             _mapper = mapper;
-            _bankRepository = new(_context.Connection);
+            _bankHandler = bankHandler;
             Task.Run(async () =>
             {
                 await _context.CreateTablesAsync();
-                await Init();
             }).Wait();
 
-        }
-        private async Task Init()
-        {
-            await _bankRepository.AddAsync(new BankDto
-            {
-                Id = 1,
-                Type = "OAO",
-                BIK = 10201010,
-                TRN = 32124344,
-                LegalAddress = "Syvorova 12",
-                LegalName = "Bank-Propan",
-                ClientIds = 1134,
-                CreditIds = 1123
-            }, new CancellationToken());
-        }
-        public async Task CreateDataBaseAsync(CancellationToken cancellationToken = default)
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-            await _context.Connection.CreateTablesAsync<EntityDto, CompanyDto, BankDto>();
-        }
-
-        public async Task DeleteDataBaseAsync(CancellationToken cancellationToken = default)
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-            await _context.Connection.DeleteAllAsync<EntityDto>();
-            await _context.Connection.DeleteAllAsync<CompanyDto>();
-            await _context.Connection.DeleteAllAsync<BankDto>();
         }
 
         public async Task SaveAllAsync(CancellationToken cancellationToken = default)
         {
-            cancellationToken.ThrowIfCancellationRequested();
-            var banks = await _bankRepository.GetAllAsync(cancellationToken);
+            var banks = await _bankHandler.GetBanksInfoAsync(cancellationToken);
             await _context.Connection.UpdateAllAsync(banks);
         }
 
-        public async Task<IEnumerable<Bank>> GetAllBanksAsync(CancellationToken cancellationToken = default)
+        public IBankHandler GetBankHandler(CancellationToken cancellationToken = default)
         {
-            var bankDtos = await _bankRepository.GetAllAsync(cancellationToken);
-            var result = new List<Bank>();
-
-            foreach (var bank in bankDtos)
-            {
-                result.Add(_mapper.Map<Bank>(bank));
-            }
-
-            return result;
+            return _bankHandler;
         }
     }
 }

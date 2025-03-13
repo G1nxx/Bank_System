@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BankSystem.Pages.EditBanksPage"
+             Title="EditBanksPage"
+             xmlns:pages="clr-namespace:BankSystem.Pages"
+             xmlns:entities="clr-namespace:Domain.Entities;assembly=Domain"
+             x:DataType="pages:EditBanksPage"
+             >
+
+
+
+    <Grid Padding="20" RowSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Button Text="Добавить банк"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                Clicked="OnAddBankClicked"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                Grid.Row="0" />
+        
+        <VerticalStackLayout Padding="20" Spacing="15" Grid.Row="1">
+            
+            <Label Text="Список банков"
+                   FontSize="24"
+                   HorizontalOptions="Center" />
+
+            <CollectionView x:Name="banksCollectionView"
+                            SelectionMode="Single"
+                            SelectionChanged="OnBankSelected">
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="entities:Bank">
+                        <VerticalStackLayout Padding="10" Spacing="5">
+                            <Label Text="{Binding LegalName}"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                            <Label Text="{Binding Type}"
+                                   FontSize="14" />
+                            <Label Text="{Binding LegalAddress}"
+                                   FontSize="14" />
+                            <Label Text="{Binding TRN, StringFormat='TRN: {0}'}"
+                                   FontSize="14" />
+                            <Label Text="{Binding BIK, StringFormat='BIK: {0}'}"
+                                   FontSize="14" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
+    
+    
+    
