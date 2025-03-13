@@ -1,12 +1,12 @@
-﻿using Domain.Entities;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Domain.Enums;
+using SQLite;
 
-namespace Infrastructure.Dtos
+namespace Application.Dtos
 {
     [Table("Companies")]
-    internal class CompanyDto : EntityDto
+    public class CompanyDto : EntityDto
     {
-        public CompanyType Type { get; set; }
+        public string Type { get; set; }
         public string LegalName { get; set; }
         public int TRN { get; set; }
         public int BIK { get; set; }

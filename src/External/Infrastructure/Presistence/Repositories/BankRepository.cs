@@ -1,16 +1,21 @@
-﻿using Infrastructure.Dtos;
-using Infrastructure.Interfaces;
+﻿using Application.Dtos;
+using Application.Interfaces;
 using SQLite;
 
-namespace Infrastructure.Repositories
+namespace Infrastructure.Presistence.Repositories
 {
-    internal class BankRepository(SQLiteAsyncConnection database) : IRepository<BankDto>
+    public class BankRepository : IRepository<BankDto>
     {
+        public SQLiteAsyncConnection database;
+        public BankRepository(SQLiteAsyncConnection database)
+        {
+            this.database = database;
+        }
         public async Task<uint> AddAsync(BankDto entity, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            uint s = (uint)await database.InsertAsync(entity);
-            return s;
+            var s = await database.InsertAsync(entity);
+            return (uint)s;
         }
 
         public async Task DeleteAsync(uint id, CancellationToken cancellationToken)
@@ -40,6 +45,6 @@ namespace Infrastructure.Repositories
         {
             cancellationToken.ThrowIfCancellationRequested();
             await database.UpdateAsync(entity);
-        }        
+        }
     }
 }

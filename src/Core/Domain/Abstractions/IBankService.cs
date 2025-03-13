@@ -2,7 +2,7 @@
 
 namespace Domain.Abstractions
 {
-    internal interface IBankService
+    public interface IBankService
     {
         public decimal InterestRate { get; }
         public decimal Amount { get; }

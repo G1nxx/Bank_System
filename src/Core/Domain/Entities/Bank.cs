@@ -1,10 +1,13 @@
 ﻿using Domain.Abstractions;
+using Domain.Enums;
 
 namespace Domain.Entities
 {
-    internal class Bank() : Company
+    public class Bank : Company
     {
-        public IEnumerable<BankAccount> Credits { get; private set; }
-        public IEnumerable<IUser> Clients { get; private set; }
+        public uint CreditIds { get; set; }
+        public uint ClientIds { get; set; }
+        //public ICollection<BankAccount> Accounts { get; private set; }
+        //public ICollection<IUser> Users { get; private set; }
     }
 }

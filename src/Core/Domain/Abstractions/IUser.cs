@@ -1,6 +1,6 @@
 ﻿namespace Domain.Abstractions
 {
-    internal interface IUser
+    public interface IUser
     {
         public string Login { get; }
         public string Name { get;}

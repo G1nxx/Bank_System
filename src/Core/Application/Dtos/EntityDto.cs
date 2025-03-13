@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Dtos
+namespace Application.Dtos
 {
     [Table("Entities")]
-    internal class EntityDto
+    public class EntityDto
     {
         [PrimaryKey, AutoIncrement, Indexed, NotNull]
         public uint Id { get; set; }

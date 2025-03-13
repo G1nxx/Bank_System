@@ -4,9 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Interfaces
+namespace Domain.Enums
 {
-    internal interface IRequestHandler
+    public enum CompanyType
     {
+        None,
+        IP,
+        OOO,
+        OAO,
+        ODO,
+        ZAO
     }
 }

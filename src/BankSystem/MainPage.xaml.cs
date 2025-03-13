@@ -1,25 +1,64 @@
-﻿namespace BankSystem
+﻿using BankSystem.Pages;
+using Application.Interfaces;
+using Infrastructure.Presistence.Context;
+using Infrastructure.Presistence.UnitOfWork;
+
+namespace BankSystem;
+
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+    IUnitOfWork _unitOfWork;
+    public MainPage(IUnitOfWork unitOfWork)
     {
-        int count = 0;
+        _unitOfWork = unitOfWork;
+        InitializeComponent();
+        Task.Run(UpdatePicker).Wait();
+    }
 
-        public MainPage()
+    private async Task UpdatePicker()
+    {
+        try
         {
-            InitializeComponent();
+            var banks = await _unitOfWork.GetAllBanksAsync();
+            bankPicker.Items.Clear();
+            foreach (var bank in banks)
+            {
+                bankPicker.Items.Add(bank.LegalName);
+            }
         }
-
-        private void OnCounterClicked(object sender, EventArgs e)
+        catch (Exception ex)
         {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            statusLabel.Text = $"Ошибка загрузки банков: {ex.Message}";
         }
     }
 
+    private async void OnRegisterClicked(object sender, EventArgs e)
+    {
+        if (bankPicker.SelectedIndex == -1)
+        {
+            statusLabel.Text = "Пожалуйста, выберите банк для регистрации.";
+            return;
+        }
+
+        string selectedBank = bankPicker.SelectedItem.ToString();
+        statusLabel.Text = ""; // очищаем статус
+
+        // Здесь может быть переход на страницу регистрации, передаём выбранный банк
+        await Navigation.PushAsync(new RegistrationPage(selectedBank));
+    }
+
+    private async void OnLoginClicked(object sender, EventArgs e)
+    {
+        if (bankPicker.SelectedIndex == -1)
+        {
+            statusLabel.Text = "Пожалуйста, выберите банк для входа.";
+            return;
+        }
+
+        string selectedBank = bankPicker.SelectedItem.ToString();
+        statusLabel.Text = "";
+
+        // Здесь переход на страницу входа
+        //await Navigation.PushAsync(new LoginPage(selectedBank));
+    }
 }

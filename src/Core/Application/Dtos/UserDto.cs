@@ -1,9 +1,9 @@
 ﻿using SQLite;
 
-namespace Infrastructure.Dtos
+namespace Application.Dtos
 {
     [Table("Users")]
-    internal class UserDto : EntityDto
+    public class UserDto : EntityDto
     {
         public string Login { get; set; }
         public string Name { get; set; }

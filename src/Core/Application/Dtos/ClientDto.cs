@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Dtos
+namespace Application.Dtos
 {
     [Table("Clients")]
-    internal class ClientDto : UserDto
+    public class ClientDto : UserDto
     {
         [PrimaryKey]
         public uint AccountId { get; set; }

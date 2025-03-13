@@ -1,5 +1,5 @@
-﻿using Infrastructure.Dtos;
-using Infrastructure.Interfaces.Repositories;
+﻿using Application.Dtos;
+using Application.Interfaces.Repositories;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Repositories
+namespace Infrastructure.Presistence.Repositories
 {
     internal class UserRepository(SQLiteAsyncConnection database) : IUserRepository
     {

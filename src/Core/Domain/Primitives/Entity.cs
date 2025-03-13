@@ -1,6 +1,6 @@
 ﻿namespace Domain.Primitives
 {
-    internal class Entity
+    public class Entity
     {
         public Entity(uint id) => Id = id;
         protected Entity() {}
