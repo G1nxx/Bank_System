@@ -16,6 +16,7 @@ namespace Infrastructure.Persistence.UnitOfWork
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
         private readonly ITransactionHandler _transactionHandler;
+        private readonly ITransferHandler _transferHandler;
         private readonly IBankHandler _bankHandler;
         private readonly IUserHandler _userHandler;
         private readonly IRCBAHandler _rcbaHandler;
@@ -24,6 +25,7 @@ namespace Infrastructure.Persistence.UnitOfWork
         public SQLiteUnitOfWork(AppDbContext context,
             IMapper      mapper,
             ITransactionHandler transactionHandler,
+            ITransferHandler transferHandler,
             IBankHandler bankHandler,
             IUserHandler userHandler,
             IRCBAHandler rcbaHandler,
@@ -32,6 +34,7 @@ namespace Infrastructure.Persistence.UnitOfWork
             _context     = context;
             _mapper      = mapper;
             _transactionHandler = transactionHandler;
+            _transferHandler = transferHandler;
             _bankHandler = bankHandler;
             _userHandler = userHandler;
             _rcbaHandler = rcbaHandler;
@@ -79,6 +82,11 @@ namespace Infrastructure.Persistence.UnitOfWork
         public ITransactionHandler GetTransactionHandler(CancellationToken cancellationToken = default)
         {
             return _transactionHandler;
+        }
+
+        public ITransferHandler GetTransferHandler(CancellationToken cancellationToken = default)
+        {
+            return _transferHandler;
         }
     }
 }

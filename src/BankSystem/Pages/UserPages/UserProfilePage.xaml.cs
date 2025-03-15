@@ -28,7 +28,7 @@ public partial class UserProfilePage : ContentPage
         }
         else if (action == "Перевести средства")
         {
-            await Navigation.PushAsync(new TransferPage());
+            await Navigation.PushAsync(new TransferPage(_user, _unitOfWork));
         }
     }
 }

@@ -30,6 +30,10 @@ namespace Infrastructure.Persistence.Handlers
         {
             return requestMapper.Map<BankAccount>(await requestRepository.GetByIdAsync(requestId, cancellationToken));
         }
+        public async Task<BankAccount> GetBAByAccountNumberAsync(string bankNumber, CancellationToken cancellationToken)
+        {
+            return requestMapper.Map<BankAccount>(await requestRepository.GetBAByAccountNumberAsync(bankNumber, cancellationToken));
+        }
 
         public async Task<IEnumerable<BankAccount>> GetBAsAsync(CancellationToken cancellationToken)
         {
@@ -53,7 +57,7 @@ namespace Infrastructure.Persistence.Handlers
 
         public async Task<IEnumerable<BankAccount>> GetBAsByUserIdAsync(uint userId, CancellationToken cancellationToken)
         {
-            return (await requestRepository.GetBAsByBankIdAsync(userId, cancellationToken)).Select(requestMapper.Map<BankAccount>).ToList();
+            return (await requestRepository.GetBAsByUserIdAsync(userId, cancellationToken)).Select(requestMapper.Map<BankAccount>).ToList();
         }
 
         public async Task UpdateBA(BankAccount request, CancellationToken cancellationToken)

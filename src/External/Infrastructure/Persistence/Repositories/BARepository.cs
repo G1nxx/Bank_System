@@ -89,6 +89,14 @@ namespace Infrastructure.Persistence.Repositories
             cancellationToken.ThrowIfCancellationRequested();
             await _context.Connection.UpdateAsync(entity);
         }
+
+        public async Task<BankAccountDto> GetBAByAccountNumberAsync(string accountNumber, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            var result = await _context.Connection.Table<BankAccountDto>()
+                            .Where(t => t.AccountNumber == accountNumber).FirstOrDefaultAsync();
+            return result;
+        }
     }
 }
 

@@ -8,7 +8,7 @@ namespace Domain.Entities
     {
         public string AccountName { get; set; }
         public string AccountNumber { get; set; }
-        public decimal Balance { get; private set; }
+        public decimal Balance { get; set; }
         public CurrencyType Currency { get; set; }
         public AStatusType Status { get; set; }
         public uint UserId { get; set; }

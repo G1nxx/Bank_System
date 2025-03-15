@@ -16,6 +16,7 @@ namespace Application.Interfaces.Handlers
         Task<IEnumerable<BankAccount>> GetBAsByCurrency(CurrencyType type, CancellationToken cancellationToken);
         Task<IEnumerable<BankAccount>> GetBAsByUserIdAsync(uint userId, CancellationToken cancellationToken);
         Task<IEnumerable<BankAccount>> GetBAsByBankIdAsync(uint bankId, CancellationToken cancellationToken);
+        public Task<BankAccount> GetBAByAccountNumberAsync(string bankNumber, CancellationToken cancellationToken);
         Task<IEnumerable<BankAccount>> GetBAsAfterDate(DateTime date, CancellationToken cancellationToken);
         Task<IEnumerable<BankAccount>> GetBAsBeforeDate(DateTime date, CancellationToken cancellationToken);
         Task UpdateBA(BankAccount ba, CancellationToken cancellationToken);

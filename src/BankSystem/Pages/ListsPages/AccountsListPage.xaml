@@ -16,6 +16,7 @@
                         <VerticalStackLayout Padding="10">
                             <Label Text="{Binding AccountName, StringFormat='Название счета: {0}'}" FontSize="18" />
                             <Label Text="{Binding Currency, StringFormat='Валюта: {0}'}" FontSize="14" />
+                            <Label Text="{Binding Balance, StringFormat='Баланс: {0}'}" FontSize="14" />
                             <Label Text="{Binding Status, StringFormat='Статус: {0}'}" FontSize="14" />
                             <Label Text="{Binding CreatedAt, StringFormat='Дата создания: {0}'}" FontSize="14" />
                         </VerticalStackLayout>

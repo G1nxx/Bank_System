@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Domain.Entities.Transactions
 {
@@ -18,7 +17,7 @@ namespace Domain.Entities.Transactions
         }
         public Transaction() { }
         public Transaction(TransactionType type,
-                           Entity entity)
+                           Entity entity, BankAccount? RecipientBankAccount = null, BankAccount? ReceiverBankAccount = null)
         {
             Type = type;
             switch (Type)
@@ -33,7 +32,7 @@ namespace Domain.Entities.Transactions
 
                     break;
                 case TransactionType.Transfer:
-                    Information = GetTransactionInfo(entity as Transfer);
+                    Information = GetTransactionInfo(entity as Transfer, RecipientBankAccount, ReceiverBankAccount);
                     break;
             }
         }
@@ -58,20 +57,20 @@ namespace Domain.Entities.Transactions
                    $"Время запроса: {rcba.CreatedAt:dd/MM/yyyy HH:mm:ss}.";
         }
 
-        private string GetTransactionInfo(Transfer transfer)
+        private string GetTransactionInfo(Transfer transfer, BankAccount RecipientBankAccount, BankAccount ReceiverBankAccount)
         {
-            string recipientInfo = transfer.RecipientBankAccount != null
-                ? $"Счет отправителя: {transfer.RecipientBankAccount.AccountNumber}.\nБаланс: {transfer.RecipientBankAccount.Balance} {transfer.RecipientBankAccount.Currency}.\n"
+            string recipientInfo = RecipientBankAccount != null
+                ? $"Счет отправителя: {RecipientBankAccount.AccountNumber}.\nБаланс: {RecipientBankAccount.Balance} {RecipientBankAccount.Currency}.\n"
                 : "Счет отправителя: Не указан.\n";
 
-            string receiverInfo = transfer.ReceiverBankAccount != null
-                ? $"Счет получателя: {transfer.ReceiverBankAccount.AccountNumber}.\nБаланс: {transfer.ReceiverBankAccount.Balance} {transfer.ReceiverBankAccount.Currency}.\n"
+            string receiverInfo = ReceiverBankAccount != null
+                ? $"Счет получателя: {ReceiverBankAccount.AccountNumber}.\nБаланс: {ReceiverBankAccount.Balance} {ReceiverBankAccount.Currency}.\n"
                 : "Счет получателя: Не указан.\n";
 
             return $"Перевод средств.\n" +
                    $"{recipientInfo}.\n" +
                    $"{receiverInfo}.\n" +
-                   $"Сумма: {transfer.Amount}.\n" +
+                   $"Сумма в рублях: {transfer.Amount}.\n" +
                    $"Статус: {(transfer.IsCancelled ? "Отменен" : "Выполнен")}.\n" +
                    $"Дата: {transfer.Date:dd/MM/yyyy HH:mm:ss}.";
         }

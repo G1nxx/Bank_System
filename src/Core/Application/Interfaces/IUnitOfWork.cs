@@ -12,5 +12,6 @@ public interface IUnitOfWork
     public IRCBAHandler GetRCBAHandler(CancellationToken cancellationToken = default);
     public IBAHandler GetBAHandler(CancellationToken cancellationToken = default);
     public ITransactionHandler GetTransactionHandler(CancellationToken cancellationToken = default);
+    public ITransferHandler GetTransferHandler(CancellationToken cancellationToken = default);
     public IMapper GetMapper(CancellationToken cancellationToken = default);
 }

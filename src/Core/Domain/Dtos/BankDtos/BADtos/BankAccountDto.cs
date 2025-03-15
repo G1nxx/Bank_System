@@ -15,7 +15,7 @@ namespace Domain.Dtos.BankDtos.BADtos
     {
         [NotNull, Unique]
         public string AccountNumber { get; set; }
-        public decimal Balance { get; private set; }
+        public decimal Balance { get; set; }
         public string Status { get; set; }
     }
 }

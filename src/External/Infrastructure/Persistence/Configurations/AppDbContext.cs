@@ -20,11 +20,12 @@ namespace Infrastructure.Persistence.Context
 
         public async Task CreateTablesAsync()
         {
-            await _db.CreateTablesAsync<BankDto, 
-                                        UserDto, 
-                                        RCBADto, 
+            Task.Run(async () => await _db.CreateTablesAsync<BankDto,
+                                        UserDto,
+                                        RCBADto,
                                         BankAccountDto,
-                                        TransactionDto>();
+                                        TransactionDto>()).Wait();
+            await _db.CreateTableAsync<TransferDto>();
         }
 
         public SQLiteAsyncConnection Connection => _db;

@@ -14,6 +14,7 @@ namespace Application.Interfaces.Repositories
     {
         Task<IEnumerable<BankAccountDto>> GetBAsByUserIdAsync(uint userId, CancellationToken cancellationToken);
         Task<IEnumerable<BankAccountDto>> GetBAsByBankIdAsync(uint bankId, CancellationToken cancellationToken);
+        Task<BankAccountDto> GetBAByAccountNumberAsync(string AccountNumber, CancellationToken cancellationToken);
         Task<IEnumerable<BankAccountDto>> GetBAsBeforeDate(DateTime date, CancellationToken cancellationToken);
         Task<IEnumerable<BankAccountDto>> GetBAsAfterDate(DateTime date, CancellationToken cancellationToken);
         Task<IEnumerable<BankAccountDto>> GetBAsByCurrency(CurrencyType type, CancellationToken cancellationToken);

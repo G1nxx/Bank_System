@@ -57,6 +57,5 @@ namespace Infrastructure.Persistence.Repositories
             cancellationToken.ThrowIfCancellationRequested();
             await _context.Connection.UpdateAsync(entity);
         }
-
     }
 }

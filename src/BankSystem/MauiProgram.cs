@@ -36,15 +36,18 @@ namespace BankSystem
                                            typeof(UserMappingProfile).Assembly,
                                            typeof(RCBAMappingProfile).Assembly,
                                            typeof(BAMappingProfile).Assembly,
+                                           typeof(TransferMappingProfile).Assembly,
                                            typeof(TransactionMappingProfile).Assembly);
 
             builder.Services.AddSingleton<TransactionHandler>();
+            builder.Services.AddSingleton<TransferHandler>();
             builder.Services.AddSingleton<BankHandler>();
             builder.Services.AddSingleton<UserHandler>();
             builder.Services.AddSingleton<BankAccount>();
             builder.Services.AddSingleton<RCBA>();
 
             builder.Services.AddSingleton<ITransactionHandler, TransactionHandler>();
+            builder.Services.AddSingleton<ITransferHandler, TransferHandler>();
             builder.Services.AddSingleton<IBankHandler, BankHandler>();
             builder.Services.AddSingleton<IUserHandler, UserHandler>();
             builder.Services.AddSingleton<IRCBAHandler, RCBAHandler>();
@@ -52,6 +55,7 @@ namespace BankSystem
 
             builder.Services.AddSingleton<IBankRepository, BankRepository>();
             builder.Services.AddSingleton<ITransactionRepository, TransactionRepository>();
+            builder.Services.AddSingleton<ITransferRepository, TransferRepository>();
             builder.Services.AddSingleton<IUserRepository, UserRepository>();
             builder.Services.AddSingleton<IRCBARepository, RCBARepository>();
             builder.Services.AddSingleton<IBARepository, BARepository>();
