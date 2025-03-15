@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BankSystem.Pages.UserPages.UserProfilePage"
+             Title="UserProfilePage">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Профиль пользователя" FontSize="24" HorizontalOptions="Center" />
+
+            <Label Text="{Binding Login, StringFormat='Логин: {0}'}" FontSize="18" />
+            <Label Text="{Binding Name, StringFormat='Имя: {0}'}" FontSize="18" />
+            <Label Text="{Binding Email, StringFormat='Email: {0}'}" FontSize="18" />
+            <Label Text="{Binding DateOfBirth, StringFormat='Дата рождения: {0:dd/MM/yyyy}'}" FontSize="18" />
+            <Label Text="{Binding PassportSeries, StringFormat='Серия паспорта: {0}'}" FontSize="18" />
+            <Label Text="{Binding PhoneNumber, StringFormat='Номер телефона: {0}'}" FontSize="18" />
+            <Label Text="{Binding Role, StringFormat='Роль: {0}'}" FontSize="18" />
+
+            <Button Text="Действия"
+                    BackgroundColor="#007AFF"
+                    TextColor="White"
+                    Clicked="OnActionsClicked" />
+
+            <Label x:Name="statusLabel" TextColor="Red" FontSize="14" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

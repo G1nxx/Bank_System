@@ -1,4 +1,4 @@
-﻿using Application.Dtos;
+﻿using Domain.Dtos;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Application.Interfaces.Repositories

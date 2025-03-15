@@ -9,8 +9,7 @@
                FontSize="24"
                HorizontalOptions="Center" />
 
-            <Entry x:Name="typeEntry"
-               Placeholder="Тип банка: " />
+            <Picker x:Name="typePicker"/>
 
             <Entry x:Name="legalNameEntry"
                Placeholder="Юридическое название: " />
@@ -24,14 +23,6 @@
 
             <Entry x:Name="bikEntry"
                Placeholder="BIK: "
-               Keyboard="Numeric" />
-
-            <Entry x:Name="creditIdsEntry"
-               Placeholder="ID кредитов: "
-               Keyboard="Numeric" />
-
-            <Entry x:Name="clientIdsEntry"
-               Placeholder="ID клиентов: "
                Keyboard="Numeric" />
 
             <Button Text="Обновить"

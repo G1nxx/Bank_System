@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BankSystem.Pages.AdminPages.AdminProfilePage"
+             Title="AdminProfilePage">
+    <ScrollView>
+
+        <Grid Padding="30" RowSpacing="25" ColumnSpacing="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Text="Управление Банками"
+                BackgroundColor="#FF9800"
+                TextColor="White"
+                Clicked="OnRedactBanksClicked"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                Grid.Row="0" />
+            
+            <VerticalStackLayout Padding="20" Spacing="15" Grid.Row="1">
+
+                <Label Text="Информация об администраторе" FontSize="24" HorizontalOptions="Center" />
+                <Label x:Name="adminInfoLabel" FontSize="18" />
+
+                <Button Text="Пользователи"
+                        BackgroundColor="#007AFF"
+                        TextColor="White"
+                        Clicked="OnUsersClicked" />
+
+                <Button Text="Транзакции"
+                        BackgroundColor="#007AFF"
+                        TextColor="White"
+                        Clicked="OnTransactionClicked" />
+
+                <Button Text="Запросы"
+                        BackgroundColor="#007AFF"
+                        TextColor="White"
+                        Clicked="OnRequestsClicked" />
+
+                <Button Text="Переводы"
+                        BackgroundColor="#007AFF"
+                        TextColor="White"
+                        Clicked="OnTransfersClicked" />
+
+                <Button Text="Счета"
+                        BackgroundColor="#007AFF"
+                        TextColor="White"
+                        Clicked="OnAccountsClicked" />
+
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

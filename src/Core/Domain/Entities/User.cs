@@ -1,4 +1,5 @@
 ﻿using Domain.Abstractions;
+using Domain.Enums;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace Domain.Entities
 {
     public class User : IUser
     {
-        public User(uint id, string login, string name, string role, DateTime dateOfBirth, string email, string passportSeries, string phoneNumber, string passwordHash)
+        public User(uint id, string login, string name, RoleType role, DateTime dateOfBirth, string email, string passportSeries, string phoneNumber, string passwordHash)
         {
             Id = id;
             Login = login;
@@ -26,7 +27,7 @@ namespace Domain.Entities
         public uint Id { get; set; }
         public string Login { get; set; }
         public string Name { get; set; }
-        public string Role { get; set; }
+        public RoleType Role { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Email { get; set; }
         public string PassportSeries { get; set; }

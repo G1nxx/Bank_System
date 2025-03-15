@@ -35,12 +35,6 @@
 
             <Label Text="{Binding BIK, StringFormat='BIK: {0}'}"
                    FontSize="18" />
-
-            <Label Text="{Binding CreditIds, StringFormat='ID кредитов: {0}'}"
-                   FontSize="18" />
-
-            <Label Text="{Binding ClientIds, StringFormat='ID клиентов: {0}'}"
-                   FontSize="18" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

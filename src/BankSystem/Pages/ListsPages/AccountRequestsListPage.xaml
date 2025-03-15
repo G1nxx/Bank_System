@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BankSystem.Pages.ListsPages.AccountRequestsListPage"
+             Title="AccountRequestsListPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Список запросов на создание счета" FontSize="24" HorizontalOptions="Center" />
+            <CollectionView x:Name="requestsCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="10">
+                            <Label Text="{Binding AccountName}" FontSize="18" />
+                            <Label Text="{Binding Currency}" FontSize="14" />
+                            <Label Text="{Binding IsApproved, StringFormat='Статус: {0}'}" FontSize="14" />
+                            <Button Text="Подробнее"
+                                    BackgroundColor="#007AFF"
+                                    TextColor="White"
+                                    Clicked="OnDetailsClicked" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

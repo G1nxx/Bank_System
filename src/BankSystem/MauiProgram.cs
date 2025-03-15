@@ -1,19 +1,14 @@
 ﻿using Microsoft.Extensions.Logging;
-using Infrastructure.Models.Mapping;
 using Application.Interfaces;
 using Application.Interfaces.Handlers;
-using Domain.Entities.Users;
 using Infrastructure.Persistence.Context;
 using Infrastructure.Persistence.UnitOfWork;
-using Domain.Enums;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Application.Handlers;
-using Application.Dtos;
 using Infrastructure.Persistence.Repositories;
-using BankSystem.Pages.BankPages;
 using Application.Interfaces.Repositories;
 using Domain.Entities;
-using BankSystem.Pages;
+using Infrastructure.Persistence.Handlers;
+using Application.Mapping;
+using Application.Mappings;
 
 namespace BankSystem
 {
@@ -31,24 +26,35 @@ namespace BankSystem
                 });
 
             builder.Services.AddSingleton<MainPage>();
-            //builder.Services.AddSingleton<RegistrationPage>();
             builder.Services.AddSingleton<SQLiteUnitOfWork>();
 
             string dbPath = Path.Combine(@"G:\Projects\OOP\Bank_System\db", "main.db");
             var context = new AppDbContext(dbPath);
             builder.Services.AddSingleton(context);
 
-            builder.Services.AddAutoMapper(typeof(BankMappingProfile).Assembly, 
-                                           typeof(UserMappingProfile).Assembly);
+            builder.Services.AddAutoMapper(typeof(BankMappingProfile).Assembly,
+                                           typeof(UserMappingProfile).Assembly,
+                                           typeof(RCBAMappingProfile).Assembly,
+                                           typeof(BAMappingProfile).Assembly,
+                                           typeof(TransactionMappingProfile).Assembly);
 
+            builder.Services.AddSingleton<TransactionHandler>();
             builder.Services.AddSingleton<BankHandler>();
             builder.Services.AddSingleton<UserHandler>();
+            builder.Services.AddSingleton<BankAccount>();
+            builder.Services.AddSingleton<RCBA>();
 
+            builder.Services.AddSingleton<ITransactionHandler, TransactionHandler>();
             builder.Services.AddSingleton<IBankHandler, BankHandler>();
             builder.Services.AddSingleton<IUserHandler, UserHandler>();
+            builder.Services.AddSingleton<IRCBAHandler, RCBAHandler>();
+            builder.Services.AddSingleton<IBAHandler, BAHandler>();
 
-            builder.Services.AddSingleton<IRepository<BankDto>, BankRepository>();
+            builder.Services.AddSingleton<IBankRepository, BankRepository>();
+            builder.Services.AddSingleton<ITransactionRepository, TransactionRepository>();
             builder.Services.AddSingleton<IUserRepository, UserRepository>();
+            builder.Services.AddSingleton<IRCBARepository, RCBARepository>();
+            builder.Services.AddSingleton<IBARepository, BARepository>();
 
             builder.Services.AddTransient<IUnitOfWork, SQLiteUnitOfWork>();
 

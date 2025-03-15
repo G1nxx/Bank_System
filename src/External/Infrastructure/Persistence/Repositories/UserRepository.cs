@@ -1,4 +1,4 @@
-﻿using Application.Dtos;
+﻿using Domain.Dtos;
 using Application.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
 using SQLite;
@@ -20,8 +20,8 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<uint> AddAsync(UserDto entity, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            uint s = (uint)await _context.Connection.InsertAsync(entity);
-            return s;
+            await _context.Connection.InsertAsync(entity);
+            return entity.Id;
         }
 
         public async Task DeleteAsync(uint id, CancellationToken cancellationToken)

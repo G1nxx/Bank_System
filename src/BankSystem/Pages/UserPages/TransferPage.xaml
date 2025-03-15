@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BankSystem.Pages.UserPages.TransferPage"
+             Title="TransferPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Перевод средств" FontSize="24" HorizontalOptions="Center" />
+
+            <Entry x:Name="fromAccountEntry" Placeholder="Счет отправителя" />
+            <Entry x:Name="toAccountEntry" Placeholder="Счет получателя" />
+            <Entry x:Name="amountEntry" Placeholder="Сумма" Keyboard="Numeric" />
+
+            <Button Text="Перевести"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    Clicked="OnTransferClicked" />
+
+            <Label x:Name="statusLabel" TextColor="Red" FontSize="14" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

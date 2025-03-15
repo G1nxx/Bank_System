@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BankSystem.Pages.ListsPages.AccountsListPage"
+             Title="AccountsListPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Заголовок -->
+            <Label Text="Список счетов" FontSize="24" HorizontalOptions="Center" />
+
+            <!-- Список счетов -->
+            <CollectionView x:Name="accountsCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="10">
+                            <Label Text="{Binding AccountName, StringFormat='Название счета: {0}'}" FontSize="18" />
+                            <Label Text="{Binding Currency, StringFormat='Валюта: {0}'}" FontSize="14" />
+                            <Label Text="{Binding Status, StringFormat='Статус: {0}'}" FontSize="14" />
+                            <Label Text="{Binding CreatedAt, StringFormat='Дата создания: {0}'}" FontSize="14" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

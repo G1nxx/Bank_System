@@ -40,10 +40,6 @@
                                    FontSize="14" />
                             <Label Text="{Binding LegalAddress}"
                                    FontSize="14" />
-                            <Label Text="{Binding TRN, StringFormat='TRN: {0}'}"
-                                   FontSize="14" />
-                            <Label Text="{Binding BIK, StringFormat='BIK: {0}'}"
-                                   FontSize="14" />
                         </VerticalStackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

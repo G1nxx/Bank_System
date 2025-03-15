@@ -1,8 +1,10 @@
 ﻿using Domain.Abstractions;
-using Application.Dtos;
+using Domain.Dtos;
 using SQLite;
 using System.IO;
 using System.Threading.Tasks;
+using Domain.Dtos.BankDtos.BADtos;
+using Domain.Dtos.BankDtos;
 
 namespace Infrastructure.Persistence.Context
 {
@@ -18,7 +20,11 @@ namespace Infrastructure.Persistence.Context
 
         public async Task CreateTablesAsync()
         {
-            await _db.CreateTablesAsync<BankDto, UserDto>();
+            await _db.CreateTablesAsync<BankDto, 
+                                        UserDto, 
+                                        RCBADto, 
+                                        BankAccountDto,
+                                        TransactionDto>();
         }
 
         public SQLiteAsyncConnection Connection => _db;

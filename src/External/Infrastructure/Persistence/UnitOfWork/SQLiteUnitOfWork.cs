@@ -1,7 +1,7 @@
 ﻿using Domain.Abstractions;
 using Domain.Entities;
 using Domain.Enums;
-using Application.Dtos;
+using Domain.Dtos;
 using Application.Interfaces;
 using Microsoft.Maui.ApplicationModel;
 using SQLite;
@@ -14,14 +14,28 @@ namespace Infrastructure.Persistence.UnitOfWork
     public class SQLiteUnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _context;
+        private readonly IMapper _mapper;
+        private readonly ITransactionHandler _transactionHandler;
         private readonly IBankHandler _bankHandler;
         private readonly IUserHandler _userHandler;
+        private readonly IRCBAHandler _rcbaHandler;
+        private readonly IBAHandler _baHandler;
 
-        public SQLiteUnitOfWork(AppDbContext context, IBankHandler bankHandler, IUserHandler userHandler)
+        public SQLiteUnitOfWork(AppDbContext context,
+            IMapper      mapper,
+            ITransactionHandler transactionHandler,
+            IBankHandler bankHandler,
+            IUserHandler userHandler,
+            IRCBAHandler rcbaHandler,
+            IBAHandler baHandler)
         {
-            _context = context;
+            _context     = context;
+            _mapper      = mapper;
+            _transactionHandler = transactionHandler;
             _bankHandler = bankHandler;
             _userHandler = userHandler;
+            _rcbaHandler = rcbaHandler;
+            _baHandler   = baHandler;
             Task.Run(async () =>
             {
                 await _context.CreateTablesAsync();
@@ -45,6 +59,26 @@ namespace Infrastructure.Persistence.UnitOfWork
         public IUserHandler GetUserHandler(CancellationToken cancellationToken = default)
         {
             return _userHandler;
+        }
+
+        public IRCBAHandler GetRCBAHandler(CancellationToken cancellationToken = default)
+        {
+            return _rcbaHandler;
+        }
+        
+        public IMapper GetMapper(CancellationToken cancellationToken = default)
+        {
+            return _mapper;
+        }
+
+        public IBAHandler GetBAHandler(CancellationToken cancellationToken = default)
+        {
+            return _baHandler;
+        }
+
+        public ITransactionHandler GetTransactionHandler(CancellationToken cancellationToken = default)
+        {
+            return _transactionHandler;
         }
     }
 }
