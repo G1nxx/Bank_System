@@ -43,7 +43,7 @@ public partial class AdminProfilePage : ContentPage
 
     private async void OnTransfersClicked(object sender, EventArgs e)
     {
-        //await Navigation.PushAsync(new TransfersPage());
+        //await Navigation.PushAsync(new TransfersListPage(_unitOfWork));
     }
 
     private async void OnAccountsClicked(object sender, EventArgs e)

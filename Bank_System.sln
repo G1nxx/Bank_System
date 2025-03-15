@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Exter
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "src\External\Presentation\Presentation.csproj", "{351C7646-B1C0-41A6-82B8-0AA295CAAA56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankSystem", "src\BankSystem\BankSystem.csproj", "{FBB30A39-6534-4538-9483-A0F7472D687D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankSystem", "src\BankSystem\BankSystem.csproj", "{FBB30A39-6534-4538-9483-A0F7472D687D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

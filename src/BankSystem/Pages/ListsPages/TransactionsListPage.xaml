@@ -11,10 +11,19 @@
             <CollectionView x:Name="transactionsCollectionView">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <VerticalStackLayout Padding="10">
-                            <Label Text="{Binding Type, StringFormat='Тип: {0}'}" FontSize="18" />
-                            <Label Text="{Binding Information}" FontSize="14" />
-                        </VerticalStackLayout>
+                        <Grid>
+                            <VerticalStackLayout Padding="10" Grid.Column="0">
+                                <Label Text="{Binding Type, StringFormat='Тип: {0}'}" FontSize="18" />
+                                <Label Text="{Binding Information}" FontSize="14" />
+                            </VerticalStackLayout>
+
+                            <Button x:Name="cancelButton"
+                                    Text="Отменить" 
+                                    Clicked="OnCancelClicked" 
+                                    HorizontalOptions="End" 
+                                    VerticalOptions="Center"
+                                    Margin="0,0,10,0"/>
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
